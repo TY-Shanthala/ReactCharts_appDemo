@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import '../components/sidebar.scss'
+import '../components/sidebar1.scss'
 
 
 export default function Sidebar({ isOpen }) {
