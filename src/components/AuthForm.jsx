@@ -18,7 +18,7 @@ const AuthForm = ({ isLogin, onSwitch }) => {
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        // Replace with your test credentials
+        // dummy login details
         const validEmail = 'driver@gmail.com';
         const validPassword = 'driver@123';
 

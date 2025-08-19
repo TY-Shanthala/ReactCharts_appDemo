@@ -5,18 +5,12 @@ import {
 } from '@mui/x-charts';
 import { users } from '../data/users';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
   Box,
   Typography,
   Grid
 } from '@mui/material';
 import { useState } from 'react';
+import TableComponent from '../components/TableComponent';
 
 export default function Dashboard() {
   const [reversed, setReversed] = useState(false);
@@ -61,7 +55,6 @@ export default function Dashboard() {
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" gutterBottom>Driver Dashboard</Typography>
-
       {/* Chart Row */}
       <Grid container spacing={2} mb={4}>
         <Grid item xs={12} sm={4} onClick={handleChartClick}>
@@ -77,36 +70,25 @@ export default function Dashboard() {
           <LineChart {...lineData} width={250} height={180} />
         </Grid>
       </Grid>
-
-      {/* Table Section */}
       <Box>
         <Typography variant="h5" gutterBottom>Users Table</Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Age</TableCell>
-                <TableCell>Truck Number</TableCell>
-                <TableCell>Avg Time (hrs)</TableCell>
-                <TableCell>Tasks/Day</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {(reversed ? [...users].reverse() : users).map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>{user.id}</TableCell>
-                  <TableCell>{user.name}</TableCell>
-                  <TableCell>{user.age}</TableCell>
-                  <TableCell>{user.truckNumber}</TableCell>
-                  <TableCell>{user.averageTimeSpentPerDay}</TableCell>
-                  <TableCell>{user.tasksCompletedPerDay}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <TableComponent
+          showCheckbox={false}
+          showActions={false}
+          tablerow={users}
+          headCells={[
+            { id: "col1", label: "ID", },
+            { id: "name", label: "Name", },
+            { id: "age", label: "Age", },
+            { id: "truckNumber", label: "Truck Number", },
+            { id: "averageTimeSpentPerDay", label: "Avg Time (hrs)", },
+            { id: "tasksCompletedPerDay", label: "Tasks/Day" },
+          ]}
+          filterselectInitialData={{
+            name: [],
+          }}
+        />
+
       </Box>
     </Box>
   );

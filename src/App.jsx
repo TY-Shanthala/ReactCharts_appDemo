@@ -10,7 +10,6 @@ function App() {
   const location = useLocation();
   const isAuthenticated = !!localStorage.getItem('token');
 
-  // If the user is not logged in and tries to go to a protected route
   const isAuthRoute = location.pathname === '/dashboard' || location.pathname === '/table';
 
   if (!isAuthenticated && isAuthRoute) {
@@ -19,7 +18,6 @@ function App() {
 
   return (
     <div className="app">
-      {/* Show Navbar and Sidebar only if authenticated */}
       {isAuthenticated && <Navbar />}
       <div className="main">
         {isAuthenticated && <Sidebar />}
